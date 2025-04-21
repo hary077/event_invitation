@@ -63,11 +63,11 @@ include ".includes/toast_notification.php";
                                             </button>
                                             <div class="dropdown-menu">
                                                 <!-- Pilihan Edit -->
-                                                <a href="edit_post.php?post_id=<?= $post['id_post']; ?>" class="dropdown-item">
+                                                <a href="edit_post.php?post_id=<?= $post['undangan_id']; ?>" class="dropdown-item">
                                                     <i class="bx bx-edit-alt me-2"></i> Edit
                                                 </a>
                                                 <!-- Pilihan Delete -->
-                                                <a href="#" class="dropdown-item" data-bs-toggle="modal" data-bs-target="#deletePost_<?= $post['id_post']; ?>">
+                                                <a href="#" class="dropdown-item" data-bs-toggle="modal" data-bs-target="#deletePost_<?= $post['undangan_id']; ?>">
                                                     <i class="bx bx-trash me-2"></i> Delete
                                                 </a>
                                             </div>
@@ -76,7 +76,7 @@ include ".includes/toast_notification.php";
                                 </tr>
 
                                 <!-- Modal untuk Hapus Konten Blog -->
-                     <div class="modal fade" id="deletePost_<?= $post['id_post']; ?>" tabindex="-1" aria-hidden="true">
+                     <div class="modal fade" id="deletePost_<?= $post['undangan_id']; ?>" tabindex="-1" aria-hidden="true">
                                     <div class="modal-dialog" role="document">
                                         <div class="modal-content">
                                             <div class="modal-header">
@@ -86,7 +86,7 @@ include ".includes/toast_notification.php";
                                             <div class="modal-body">
                                                 <form action="proses_post.php" method="POST">
                                                     <p>Tindakan ini tidak bisa dibatalkan.</p>
-                                                    <input type="hidden" name="postID" value="<?= $post['id_post']; ?>">
+                                                    <input type="hidden" name="postID" value="<?= $post['undangan_id']; ?>">
                                                     <div class="modal-footer">
                                                         <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">Batal</button>
                                                         <button type="submit" name="delete" class="btn btn-primary">Hapus</button>
