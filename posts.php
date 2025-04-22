@@ -26,11 +26,11 @@ include '.includes/header.php';
                             <select class="form-select" name="category_id" required>
                                 <option value="" selected disabled>Pilih salah satu</option>
              <?php
-                                $query = "SELECT * FROM category"; // Query untuk mengambil data kategori
+                                $query = "SELECT * FROM undangan"; // Query untuk mengambil data kategori
                                 $result = $conn->query($query); // Menjalankan query
                                 if ($result->num_rows > 0) { // Jika terdapat data kategori
                                     while ($row = $result->fetch_assoc()) { // Iterasi setiap kategori
-                                        echo "<option value='" . $row["category_id"] . "'>" . $row["category_name"] . "</option>";
+                                        echo "<option value='" . $row["acara_id"] . "'>" . $row["tamu_id"] . "</option>";
                                     }
                                 }
                                 ?>
