@@ -36,10 +36,10 @@ include ".includes/toast_notification.php";
                             <?php
                             $index = 1; // Variabel untuk nomor urut
                             // Query untuk mengambil data dari tabel posts, users, dan category
-                            $query = "SELECT tamu.*, users.name as user_name, acara.acara_name, undangan.undangan_name, FROM tamu
-                                      INNER JOIN users ON tamu.user_id = users.user_id 
-                                      LEFT JOIN acara ON tamu.acara_id = tamu.tamu_id 
-                                      WHERE tamu.acara_id = $userId";
+                            $query = "SELECT acara.acara_id, acara.nama_acara, tamu.nama_tamu,tamu.setatus_kehadiran FROM acara
+                                      INNER JOIN undangan ON acara.acara_id = undangan.acara_id
+                                      INNER JOIN tamu ON undangan.tamu_id = tamu.tamu_id
+                                      WHERE undangan.undangan_id = $userId";
 
                             // Eksekusi query
                             $exec = mysqli_query($conn, $query);
