@@ -36,7 +36,7 @@ include ".includes/toast_notification.php";
                             <?php
                             $index = 1; // Variabel untuk nomor urut
                             // Query untuk mengambil data dari tabel posts, users, dan category
-                            $query = "SELECT acara.acara_id, acara.nama_acara, tamu.nama_tamu,tamu.setatus_kehadiran FROM acara
+                            $query = "SELECT acara.acara_id, acara.nama_acara, tamu.namatamu,tamu.status_kehadiran FROM acara
                                       INNER JOIN undangan ON acara.acara_id = undangan.acara_id
                                       INNER JOIN tamu ON undangan.tamu_id = tamu.tamu_id
                                       WHERE undangan.undangan_id = $userId";
