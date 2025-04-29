@@ -78,7 +78,7 @@ while ($acara = mysqli_fetch_assoc($exec)):
                 <form action="proses_kategori.php" method="POST">
                     <div>
                         <p>Tindakan ini tidak bisa dibatalkan.</p>
-                        <input type="hidden" name="catID" value="<?= $acara['acara_id']; ?>">
+                        <input type="hidden" name="acara_id" value="<?= $acara['acara_id']; ?>">
                     </div>
             </div>
             <div class="modal-footer">
@@ -90,7 +90,7 @@ while ($acara = mysqli_fetch_assoc($exec)):
     </div>
 </div>
  <!-- modal untuk update kategory -->
- <div id="editCategory_<?= $acara['acara_id']; ?>" class="modal fade" tabindex="-1" aria-hidden="true">
+ <div id="editAcara_<?= $acara['acara_id']; ?>" class="modal fade" tabindex="-1" aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
@@ -99,11 +99,28 @@ while ($acara = mysqli_fetch_assoc($exec)):
             </div>
             <div class="modal-body">
                 <form action="proses_kategori.php" method="POST">
-                    <input type="hidden" name="catID" value="<?= $acara['acara_id']; ?>">
-                    <div class="form-group">
-                        <label>Nama Acara</label>
-                        <input type="text" value="<?= $acara['nama_acara']; ?>" name="nama_acara" class="form-control">
+                    <input type="hidden" name="acara_id" value="<?= $acara['acara_id']; ?>">
+                    <div class="modal-body">
+                <form action="proses_kategori.php" method="POST">
+                    <div class="mb-3">
+                        <label for="nama_acara" class="form-label">Nama Acara</label>
+                        <input type="text" class="form-control" name="nama_acara" required>
                     </div>
+                    <div class="mb-3">
+                        <label for="tgl_acara" class="form-label">Tanggal Acara</label>
+                        <input type="date" class="form-control" name="tgl_acara" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="lokasi_acara" class="form-label">Lokasi</label>
+                        <input type="text" class="form-control" name="lokasi_acara" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="deskripsi" class="form-label">Deskripsi</label>
+                        <input type="text" class="form-control" name="deskripsi" required>
+                    </div>
+                  
+                </form>
+            </div>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Batal</button>
@@ -140,7 +157,7 @@ while ($acara = mysqli_fetch_assoc($exec)):
                     </div>
                     <div class="mb-3">
                         <label for="tanggal" class="form-label">Tanggal Acara</label>
-                        <input type="date" class="form-control" name="tanggal_acara" required>
+                        <input type="date" class="form-control" name="tgl_acara" required>
                     </div>
                     <div class="mb-3">
                         <label for="lokasi" class="form-label">Lokasi</label>
