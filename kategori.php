@@ -101,7 +101,6 @@ while ($acara = mysqli_fetch_assoc($exec)):
                 <form action="proses_kategori.php" method="POST">
                     <input type="hidden" name="acara_id" value="<?= $acara['acara_id']; ?>">
                     <div class="modal-body">
-                <form action="proses_kategori.php" method="POST">
                     <div class="mb-3">
                         <label for="nama_acara" class="form-label">Nama Acara</label>
                         <input type="text" class="form-control" name="nama_acara" required>

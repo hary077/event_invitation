@@ -27,7 +27,6 @@ include ".includes/toast_notification.php";
                                 <th>Tanggal acara</th>
                                 <th>Lokasi acara</th>
                                 <th>Setatus kehadiran</th>
-                                <th>email</th>
                                 <th width="150px">Pilihan</th>
                             </tr>
                         </thead>
@@ -36,10 +35,10 @@ include ".includes/toast_notification.php";
                             <?php
                             $index = 1; // Variabel untuk nomor urut
                             // Query untuk mengambil data dari tabel posts, users, dan category
-                            $query = "SELECT acara.acara_id, acara.nama_acara, tamu.namatamu,tamu.status_kehadiran FROM acara
-                                      INNER JOIN undangan ON acara.acara_id = undangan.acara_id
+                            $query = "SELECT undangan.*, tamu.namatamu, acara.nama_acara, acara.tgl_acara, acara.lokasi_acara, tamu.status_kehadiran FROM undangan 
                                       INNER JOIN tamu ON undangan.tamu_id = tamu.tamu_id
-                                      WHERE undangan.undangan_id = $userId";
+                                      INNER JOIN acara ON undangan.acara_id = acara.acara_id
+                                      ";
 
                             // Eksekusi query
                             $exec = mysqli_query($conn, $query);
@@ -53,8 +52,7 @@ include ".includes/toast_notification.php";
                                     <td><?= $post['nama_acara']; ?></td>
                                     <td><?= $post['tgl_acara']; ?></td>
                                     <td><?= $post['lokasi_acara']; ?></td>
-                                    <td><?= $post['setatus_kehadiran']; ?></td>
-                                    <td><?= $post['email']; ?></td>
+                                    <td><?= $post['status_kehadiran']; ?></td>
                                     <td>
                                         <div class="dropdown">
                                             <!-- Tombol dropdown untuk Pilihan -->

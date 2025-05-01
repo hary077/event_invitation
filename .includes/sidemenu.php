@@ -36,6 +36,11 @@
             <div data-i18n="Input groups">Kategori</div>
           </a>
         </li>
+        <li class="menu-item">
+          <a href="undangan.php" class="menu-link">
+            <div data-i18n="Input groups">Undangan</div>
+          </a>
+        </li>
       </ul>
     </li>
   </ul>

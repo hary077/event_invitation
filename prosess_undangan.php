@@ -12,11 +12,11 @@ $user_Id = $_SESSION["user_id"];
 if (isset($_POST['simpan'])) {
     // Mendapatkan data dari form
     // $tamu_id = $_POST["tamu_id"]; // Judul postingan
-    $nama_tamu = $_POST["namatamu"]; // Konten postingan
-    $email = $_POST["email"]; // ID kategori
-    $status_kehadiran = $_POST["status_kehadiran"];
+    $acara_id = $_POST["acara_id"]; // ID kategori
+    $tamu_id = $_POST["tamu_id"]; // Konten postingan
+    $tanggal_diundang = $_POST["tanggal_diundang"];
 
-        $query = "INSERT INTO tamu ( namatamu, email, status_kehadiran) VALUES ('$nama_tamu', '$email','$status_kehadiran')";
+        $query = "INSERT INTO undangan (acara_id, tamu_id, tanggal_diundang) VALUES ('$acara_id', '$tamu_id','$tanggal_diundang')";
         if ($conn->query($query) === TRUE) {
             $_SESSION['notification'] = [
                 'type' => 'primary',

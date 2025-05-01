@@ -71,7 +71,7 @@ if (isset($_POST['update'])) {
     $deskripsi = $_POST['deskripsi'];
 
     // Query untuk memperbarui data kategori berdasarkan ID
-    $query = "UPDATE acara SET acara_id = '$acara_id', nama_acara = '$nama_acara', tgl_acara ='$tgl_acara', lokasi_acara = '$lokasi_acara', deskripsi = '$deskripsi' WHERE acara_id='$acara_id'";
+    $query = "UPDATE acara SET acara_id = '$acara_id', nama_acara = '$nama_acara', tgl_acara = '$tgl_acara', lokasi_acara = '$lokasi_acara', deskripsi = '$deskripsi' WHERE acara_id='$acara_id'";
     $exec = mysqli_query($conn, $query);
 
     // Menyimpan notifikasi keberhasilan atau kegagalan ke dalam session
