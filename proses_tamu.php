@@ -14,7 +14,9 @@ if (isset($_POST['simpan'])) {
     // $tamu_id = $_POST["tamu_id"]; // Judul postingan
     $nama_tamu = $_POST["namatamu"]; // Konten postingan
     $email = $_POST["email"]; // ID kategori
-    $status_kehadiran = $_POST["status_kehadiran"];
+    if (isset($_POST['status_kehadiran'])){
+      $status_kehadiran = $_POST["status_kehadiran"];
+  }
 
         $query = "INSERT INTO tamu ( namatamu, email, status_kehadiran) VALUES ('$nama_tamu', '$email','$status_kehadiran')";
         if ($conn->query($query) === TRUE) {
@@ -28,28 +30,19 @@ if (isset($_POST['simpan'])) {
                 'message' => 'Error adding post: ' . $conn->error
             ];
         }
-    } else {
-        $_SESSION['notification'] = [
-            'type' => 'danger',
-            'message' => 'Failed to upload image.'
-        ];
+        
+            header('Location: tamu.php');
+            exit();
     }
-
-    header('Location: dashboard.php');
-    exit();
 
 // Proses penghapusan postingan
 
     if (isset($_POST['delete'])) {
-
-        // Mengambil ID post dari parameter URL
-
-        $postID = $_POST['postID'];
+        $tamu_id = $_POST['tamu_id'];
 
         // Query untuk menghapus post berdasarkan ID
-        $exec = mysqli_query($conn, "DELETE FROM posts WHERE id_post='$postID'");
+        $exec = mysqli_query($conn, "DELETE FROM tamu WHERE tamu_id='$tamu_id'");
 
-        // Menyimpan notifikasi keberhasilan atau kegagalan ke dalam session
         if ($exec) {
             $_SESSION['notification'] = [
                 'message' => 'Post successfully deleted.',
@@ -63,43 +56,21 @@ if (isset($_POST['simpan'])) {
         }
 
         // Redirect kembali ke halaman dashboard
-        header('Location: dashboard.php');
+        header('Location: tamu.php');
         exit();
     }
 // Mengangani pembaruan data postingan
 if ($_SERVER['REQUEST_METHOD'] == "POST" && isset($_POST['update'])) {
   // Mendapatkan data dari form
-  $postId = $_POST['post_id'];
-  $postTitle = $_POST['post_title'];
-  $content = $_POST['content'];
-  $categoryId = $_POST['category_id'];
-  $imageDir = "assets/img/uploads/"; // Direktori penyimpanan gambar
-
-  // Periksa apakah file gambar baru diunggah
-  if (!empty($_FILES["image_path"]["name"])) {
-    $imageName = $_FILES["image_path"]["name"];
-    $imagePath = $imageDir . $imageName;
-
-    // Pindahkan file baru ke direktori tujuan
-    move_uploaded_file($_FILES["image_path"]["tmp_name"], $imagePath);
-
-    $SqlQueryOldImage = "SELECT image_path FROM posts WHERE id_post = $postId";
-    $resultOldImage =  conn::query($SqlQueryOldImage);
-    if ($resultOldImage->num_rows > 0) {
-      $soldImage = $resultOldImage->fetch_assoc()['image_path'];
-      if (file_exists($soldImage)) {
-        unlink($soldImage); // Menghapus file lama
-      }
+  $tamuID = $_POST['tamu_id'];
+  $nama_tamu = $_POST["namatamu"]; // Konten postingan
+    $email = $_POST["email"]; // ID kategori
+    if (isset($_POST['status_kehadiran'])){
+      $status_kehadiran = $_POST["status_kehadiran"];
     }
-  } else {
-    // Jika tidak ada file baru, gunakan gambar lama
-    $SqlQueryPath = "SELECT image_path FROM posts WHERE id_post = '$postId'";
-    $result = conn::query($SqlQueryPath);
-    $imagePath = ($result->num_rows > 0) ? $result->fetch_assoc()['image_path'] : null;
-  }
 
   // Update data postingan di database
-  $queryUpdate = "UPDATE posts SET post_title = '$postTitle', content = '$content', category_id = '$categoryId', image_path = '$imagePath' WHERE id_post = '$postId'";
+  $queryUpdate = "UPDATE tamu SET namatamu = '$nama_tamu', email = '$email', status_kehadiran = '$status_kehadiran' WHERE tamu_id = '$tamuID'";
   $conn->query($queryUpdate);
 
   if ($conn->query($queryUpdate) === TRUE) {
@@ -112,10 +83,10 @@ if ($_SERVER['REQUEST_METHOD'] == "POST" && isset($_POST['update'])) {
     // Session notifikasi gagal
   $_SESSION['notification'] = [
     'type' => 'danger',
-    'massage' => 'gagal memperbarui postingan.'
+    'message' => 'gagal memperbarui postingan.'
   ];
 }
 //arahkan ke halaman dashboard
-header ('Location: dashboard.php');
+header ('Location: tamu.php');
 exit();
 }

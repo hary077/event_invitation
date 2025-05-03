@@ -17,7 +17,7 @@ include ".includes/toast_notification.php";
 
             <div class="card-body">
                 <!-- Tabel responsif -->
-                <div class="table-responsive text-nowrap">
+                <div class="table-responsive tex t-nowrap">
                     <table id="datatable" class="table table-hover">
                         <thead>
                             <tr class="text-center">
@@ -35,7 +35,8 @@ include ".includes/toast_notification.php";
                             <?php
                             $index = 1; // Variabel untuk nomor urut
                             // Query untuk mengambil data dari tabel posts, users, dan category
-                            $query = "SELECT undangan.*, tamu.namatamu, acara.nama_acara, acara.tgl_acara, acara.lokasi_acara, tamu.status_kehadiran FROM undangan 
+                            $query = "SELECT undangan.*, tamu.namatamu, acara.nama_acara, acara.tgl_acara, acara.
+                                    lokasi_acara, tamu.status_kehadiran FROM undangan 
                                       INNER JOIN tamu ON undangan.tamu_id = tamu.tamu_id
                                       INNER JOIN acara ON undangan.acara_id = acara.acara_id
                                       ";

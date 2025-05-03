@@ -27,13 +27,13 @@
       </a>
       <ul class="menu-sub">
         <li class="menu-item">
-          <a href="posts.php" class="menu-link">
-            <div data-i18n="Basic Inputs">Post Baru</div>
+          <a href="tamu.php" class="menu-link">
+            <div data-i18n="Basic Inputs">Tamu</div>
           </a>
         </li>
         <li class="menu-item">
-          <a href="kategori.php" class="menu-link">
-            <div data-i18n="Input groups">Kategori</div>
+          <a href="acara.php" class="menu-link">
+            <div data-i18n="Input groups">Acara</div>
           </a>
         </li>
         <li class="menu-item">
