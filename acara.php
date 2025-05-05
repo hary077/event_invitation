@@ -75,7 +75,7 @@ while ($acara = mysqli_fetch_assoc($exec)):
                 <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
             </div>
             <div class="modal-body">
-                <form action="proses_kategori.php" method="POST">
+                <form action="proses_acara.php" method="POST">
                     <div>
                         <p>Tindakan ini tidak bisa dibatalkan.</p>
                         <input type="hidden" name="acara_id" value="<?= $acara['acara_id']; ?>">
@@ -98,7 +98,7 @@ while ($acara = mysqli_fetch_assoc($exec)):
                 <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
             </div>
             <div class="modal-body">
-                <form action="proses_kategori.php" method="POST">
+                <form action="proses_acara.php" method="POST">
                     <input type="hidden" name="acara_id" value="<?= $acara['acara_id']; ?>">
                     <div class="modal-body">
                     <div class="mb-3">
@@ -149,7 +149,7 @@ while ($acara = mysqli_fetch_assoc($exec)):
                 <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
             </div>
             <div class="modal-body">
-                <form action="proses_kategori.php" method="POST">
+                <form action="proses_acara.php" method="POST">
                     <div class="mb-3">
                         <label for="namaAcara" class="form-label">Nama Acara</label>
                         <input type="text" class="form-control" name="nama_acara" required>

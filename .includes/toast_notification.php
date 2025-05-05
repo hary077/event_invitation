@@ -1,4 +1,10 @@
-<!-- Bootstrap Toast -->
+<?php
+$notification = $_SESSION['notification'] ?? null;
+if ($notification) {
+  unset($_SESSION['notification']);
+}
+?>
+
 <?php if ($notification): ?>
   <div id="notifikasi" class="bs-toast toast fade bg-<?= $notification['type'] ?> 
   position-absolute m-3 end-0" role="alert" data-bs-autohide="true">

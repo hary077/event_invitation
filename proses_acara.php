@@ -31,7 +31,7 @@ if (isset($_POST['simpan'])) {
     }
 
     // Redirect kembali ke halaman kategori
-    header('Location: kategori.php');
+    header('Location: acara.php');
     exit();
 }
 
@@ -58,7 +58,7 @@ if (isset($_POST['delete'])) {
   }
 
   // Redirect kembali ke halaman kategori
-  header('Location: kategori.php');
+  header('Location: acara.php');
   exit();
 }
 // Proses pembaruan kategori
@@ -88,7 +88,7 @@ if (isset($_POST['update'])) {
     }
 
     // Redirect kembali ke halaman kategori
-    header('Location: kategori.php');
+    header('Location: acara.php');
     exit();
 }
 ?>

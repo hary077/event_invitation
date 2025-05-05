@@ -62,6 +62,28 @@ while ($tamu = mysqli_fetch_assoc($exec)):
         </td>
         
     </tr>
+    <div class="modal fade" id="deleteTamu_<?= $tamu['tamu_id']; ?>" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Hapus Acara?</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body">
+                    <form action="proses_tamu.php" method="POST">
+                        <div>
+                            <p>Tindakan ini tidak bisa dibatalkan.</p>
+                            <input type="hidden" name="tamu_id" value="<?= $tamu['tamu_id']; ?>">
+                        </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">Batal</button>
+                    <button type="submit" name="delete" class="btn btn-primary">Hapus</button>
+                </div>
+                    </form>
+            </div>
+        </div>
+    </div>
     <!-- edit tamu -->
     <div id="editTamu_<?= $tamu['tamu_id']; ?>" class="modal fade" tabindex="-1" aria-hidden="true">
     <div class="modal-dialog" role="document">
@@ -103,28 +125,6 @@ while ($tamu = mysqli_fetch_assoc($exec)):
             </div>
         </div>
         <!-- modal untuk hapus data kategori -->
-<div class="modal fade" id="deleteTamu_<?= $tamu['tamu_id']; ?>" tabindex="-1" aria-hidden="true">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title">Hapus Acara?</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
-            </div>
-            <div class="modal-body">
-                <form action="proses_tamu.php" method="POST">
-                    <div>
-                        <p>Tindakan ini tidak bisa dibatalkan.</p>
-                        <input type="hidden" name="tamu_id" value="<?= $tamu['tamu_id']; ?>">
-                    </div>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">Batal</button>
-                <button type="submit" name="delete" class="btn btn-primary">Hapus</button>
-            </div>
-                </form>
-        </div>
-    </div>
-</div>
         
         <?php endwhile; ?>
 </tbody>

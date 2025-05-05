@@ -45,15 +45,15 @@ include ".includes/toast_notification.php";
                             $exec = mysqli_query($conn, $query);
 
                             // Perulangan untuk menampilkan setiap baris hasil query
-                            while ($post = mysqli_fetch_assoc($exec)) :
+                            while ($undangan = mysqli_fetch_assoc($exec)) :
                             ?>
                                 <tr>
                                     <td><?= $index++; ?></td>
-                                    <td><?= $post['namatamu']; ?></td>
-                                    <td><?= $post['nama_acara']; ?></td>
-                                    <td><?= $post['tgl_acara']; ?></td>
-                                    <td><?= $post['lokasi_acara']; ?></td>
-                                    <td><?= $post['status_kehadiran']; ?></td>
+                                    <td><?= $undangan['namatamu']; ?></td>
+                                    <td><?= $undangan['nama_acara']; ?></td>
+                                    <td><?= $undangan['tgl_acara']; ?></td>
+                                    <td><?= $undangan['lokasi_acara']; ?></td>
+                                    <td><?= $undangan['status_kehadiran']; ?></td>
                                     <td>
                                         <div class="dropdown">
                                             <!-- Tombol dropdown untuk Pilihan -->
@@ -62,11 +62,11 @@ include ".includes/toast_notification.php";
                                             </button>
                                             <div class="dropdown-menu">
                                                 <!-- Pilihan Edit -->
-                                                <a href="edit_post.php?post_id=<?= $post['undangan_id']; ?>" class="dropdown-item">
+                                                <a href="edit_undangan.php?undangan_id=<?= $undangan['undangan_id']; ?>" class="dropdown-item">
                                                     <i class="bx bx-edit-alt me-2"></i> Edit
                                                 </a>
                                                 <!-- Pilihan Delete -->
-                                                <a href="#" class="dropdown-item" data-bs-toggle="modal" data-bs-target="#deletePost_<?= $post['undangan_id']; ?>">
+                                                <a href="#" class="dropdown-item" data-bs-toggle="modal" data-bs-target="#deleteUndangan_<?= $undangan['undangan_id']; ?>">
                                                     <i class="bx bx-trash me-2"></i> Delete
                                                 </a>
                                             </div>
@@ -75,7 +75,7 @@ include ".includes/toast_notification.php";
                                 </tr>
 
                                 <!-- Modal untuk Hapus Konten Blog -->
-                     <div class="modal fade" id="deletePost_<?= $post['undangan_id']; ?>" tabindex="-1" aria-hidden="true">
+                     <div class="modal fade" id="deleteUndangan_<?= $undangan['undangan_id']; ?>" tabindex="-1" aria-hidden="true">
                                     <div class="modal-dialog" role="document">
                                         <div class="modal-content">
                                             <div class="modal-header">
@@ -83,9 +83,9 @@ include ".includes/toast_notification.php";
                                                 <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
                                             </div>
                                             <div class="modal-body">
-                                                <form action="proses_post.php" method="POST">
+                                                <form action="proses_undangan.php" method="POST">
                                                     <p>Tindakan ini tidak bisa dibatalkan.</p>
-                                                    <input type="hidden" name="postID" value="<?= $post['undangan_id']; ?>">
+                                                    <input type="hidden" name="undanganID" value="<?= $undangan['undangan_id']; ?>">
                                                     <div class="modal-footer">
                                                         <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">Batal</button>
                                                         <button type="submit" name="delete" class="btn btn-primary">Hapus</button>

@@ -28,94 +28,51 @@ if (isset($_POST['simpan'])) {
                 'message' => 'Error adding post: ' . $conn->error
             ];
         }
-    } else {
-        $_SESSION['notification'] = [
-            'type' => 'danger',
-            'message' => 'Failed to upload image.'
-        ];
-    }
-
-    header('Location: dashboard.php');
-    exit();
-
-// Proses penghapusan postingan
-
-    if (isset($_POST['delete'])) {
-
-        // Mengambil ID post dari parameter URL
-
-        $postID = $_POST['postID'];
-
-        // Query untuk menghapus post berdasarkan ID
-        $exec = mysqli_query($conn, "DELETE FROM posts WHERE id_post='$postID'");
-
-        // Menyimpan notifikasi keberhasilan atau kegagalan ke dalam session
-        if ($exec) {
-            $_SESSION['notification'] = [
-                'message' => 'Post successfully deleted.',
-                'type' => 'primary',
-            ];
-        } else {
-            $_SESSION['notification'] = [
-                'message' => 'Error deleting post: ' . mysqli_error($conn),
-                'type' => 'danger',
-            ];
-        }
-
-        // Redirect kembali ke halaman dashboard
         header('Location: dashboard.php');
         exit();
     }
-// Mengangani pembaruan data postingan
-if ($_SERVER['REQUEST_METHOD'] == "POST" && isset($_POST['update'])) {
-  // Mendapatkan data dari form
-  $postId = $_POST['post_id'];
-  $postTitle = $_POST['post_title'];
-  $content = $_POST['content'];
-  $categoryId = $_POST['category_id'];
-  $imageDir = "assets/img/uploads/"; // Direktori penyimpanan gambar
 
-  // Periksa apakah file gambar baru diunggah
-  if (!empty($_FILES["image_path"]["name"])) {
-    $imageName = $_FILES["image_path"]["name"];
-    $imagePath = $imageDir . $imageName;
+  
+// Proses penghapusan postingan
 
-    // Pindahkan file baru ke direktori tujuan
-    move_uploaded_file($_FILES["image_path"]["tmp_name"], $imagePath);
+   if (isset($_POST['delete'])){
+    $undanganID = $_POST ['undanganID'];
 
-    $SqlQueryOldImage = "SELECT image_path FROM posts WHERE id_post = $postId";
-    $resultOldImage =  conn::query($SqlQueryOldImage);
-    if ($resultOldImage->num_rows > 0) {
-      $soldImage = $resultOldImage->fetch_assoc()['image_path'];
-      if (file_exists($soldImage)) {
-        unlink($soldImage); // Menghapus file lama
-      }
+    $exec = mysqli_query($conn, "DELETE FROM undangan WHERE undangan_id='$undanganID'");
+    if ($exec) {
+      $_SESSION['notification'] = [
+        'type' => 'primary',
+        'message' => 'undangan berhasil dihapus'
+      ];
+    } else {
+      $_SESSION['notification']=[
+         'type' => 'danger',
+        'message' => 'gagal menghapus undangan'
+      ];
     }
-  } else {
-    // Jika tidak ada file baru, gunakan gambar lama
-    $SqlQueryPath = "SELECT image_path FROM posts WHERE id_post = '$postId'";
-    $result = conn::query($SqlQueryPath);
-    $imagePath = ($result->num_rows > 0) ? $result->fetch_assoc()['image_path'] : null;
-  }
+    header('Location: dashboard.php');
+    exit();
+   }
 
-  // Update data postingan di database
-  $queryUpdate = "UPDATE posts SET post_title = '$postTitle', content = '$content', category_id = '$categoryId', image_path = '$imagePath' WHERE id_post = '$postId'";
-  $conn->query($queryUpdate);
-
-  if ($conn->query($queryUpdate) === TRUE) {
-    // Session notifikasi
-    $_SESSION['notification'] = [
-      'type' => 'primary',
-      'message' => 'Postingkan berhasil diperbarui.'
-    ];
-  } else {
-    // Session notifikasi gagal
-  $_SESSION['notification'] = [
-    'type' => 'danger',
-    'massage' => 'gagal memperbarui postingan.'
-  ];
-}
-//arahkan ke halaman dashboard
-header ('Location: dashboard.php');
-exit();
-}
+   if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['update'])){
+    $undanganID = $_POST ['undangan_id'];
+    $acara_id = $_POST['acara_id'];
+    $tamu_id = $_POST['tamu_id'];
+    $tanggal_diundang = $_POST['tanggal_diundang'];
+    $query = "UPDATE undangan SET acara_id = '$acara_id', tamu_id = '$tamu_id', tanggal_diundang = '$tanggal_diundang' WHERE undangan_id = $undanganID";
+    $exec = mysqli_query($conn, $query);
+    
+    if ($conn->query($query)===TRUE){
+      $_SESSION['notification'] = [
+        'type' => 'primary',
+        'message' => 'undangan berhasil dihapus'
+      ];
+    } else {
+      $_SESSION['notification']=[
+         'type' => 'danger',
+        'message' => 'gagal menghapus undangan'
+      ];
+    }
+    header('Location: dashboard.php');
+    exit();
+   }
